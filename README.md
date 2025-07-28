@@ -1,8 +1,16 @@
-# React + Vite
+**Subir imagenes a imbBB**
+Esta simple app en React permite subir imagenes a https://imgbb.com/
+Genera tu ApiKey y segui las indicaciones en: https://api.imgbb.com/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Utiliza la Api para subir tus imagenes:
+    `https://api.imgbb.com/1/upload?key=${apiKey}&name=${imageFile.name}`
 
-Currently, two official plugins are available:
+Como usar:
+ 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ 1. apiKey Generada en https://imgbb.com/
+ 2. imageFile(name): se obtiene del evento (`e.target.files[0]`) del input type='file'
+ 3. Crear un FormData  `const  data  =  new  FormData()`
+ 4. Append `data.append("image", imageFile)` **IMPORTANTE! el campo debe ser "image" ya que es lo que necesita imgBB.**
+ 5. Realiza tu fetch `const  res  =  await  fetch(url,{method:"POST", body:data})`
+ 6. La respuesta es un JSON, utilizar `resData.data.url` para obtener la url de la imagen subida
